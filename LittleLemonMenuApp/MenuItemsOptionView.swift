@@ -8,56 +8,34 @@
 import SwiftUI
 
 struct MenuItemsOptionView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
-    enum SelectedCategories: String {
-        case Food
-        case Drink
-        case Dessert
-    }
-    
-    enum SortBy: String {
-        case MostPopular = "Most Popular"
-        case Price = "$-$$$"
-        case AtoZ = "A-Z"
-    }
+    @EnvironmentObject var viewModel: MenuViewViewModel
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
-                Section("SELECTED CATEGORIES") {
-                    Text(SelectedCategories.Food.rawValue)
-                    Text(SelectedCategories.Drink.rawValue)
-                    Text(SelectedCategories.Dessert.rawValue)
+                
+                Section("Selected Categories") {
+                    Toggle(MenuCategory.food.rawValue, isOn: $viewModel.isShowFood)
+                    Toggle(MenuCategory.drink.rawValue, isOn: $viewModel.isShowDrinks)
+                    Toggle(MenuCategory.dessert.rawValue, isOn: $viewModel.isShowDesserts)
                 }
                 
-                Section("Sort By") {
-                    Text(SortBy.MostPopular.rawValue)
-                    Text(SortBy.Price.rawValue)
-                    Text(SortBy.AtoZ.rawValue)
-                }
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Text("Done")
+                Picker("Sort By", selection: $viewModel.sortBy) {
+                    ForEach(SortBy.allCases, id: \.self) { category in
+                        Text(category.rawValue).tag(category)
                     }
                 }
             }
-            .navigationTitle("Filter")
-            
+            .pickerStyle(.inline)
+            .listStyle(.grouped)
         }
+        .navigationTitle("Filter")
         .scrollDisabled(true)
-        
-        
-        
     }
 }
 
 struct MenuItemsOptionView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuItemsOptionView()
+        MenuItemsOptionView().environmentObject(MenuViewViewModel())
     }
 }

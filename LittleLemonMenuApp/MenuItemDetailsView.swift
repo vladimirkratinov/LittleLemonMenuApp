@@ -26,7 +26,7 @@ struct MenuItemDetailsView: View {
                 
                 Text("Ordered:")
                     .font(.headline)
-                Text(String(item.orderAmount))
+                Text(String(item.ordersCount))
                     .font(.subheadline)
                     .padding(.bottom, 10)
                 
@@ -38,12 +38,20 @@ struct MenuItemDetailsView: View {
                 }
             }
         }
-        .navigationTitle(item.name)
+        .navigationTitle(item.title)
     }
 }
 
 struct MenuUtemDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuItemDetailsView(item: MenuItem(type: MenuCategory.Food, name: "Food1", picture: "food1", orderAmount: 1, price: 10.99, ingredients: [Ingredient.Broccoli]))
+        let menuItem = MenuItem(
+            price: 615,
+            title: "Food1",
+            picture: "food1",
+            menuCategory: .food,
+            ordersCount: 34,
+            ingredients: [.broccoli, .carrot, .pasta]
+        )
+        MenuItemDetailsView(item: menuItem)
     }
 }
