@@ -11,7 +11,7 @@ import XCTest
 final class MenuItemTests: XCTestCase {
     func test_menuItemTitle_equalToTheInitializedValue() {
         let viewModel = MenuViewViewModel()
-        let name = viewModel.foodItems.first?.name
+        let name = viewModel.foodItems.first?.title
         XCTAssertEqual(name, "Food1")
     }
     
@@ -19,7 +19,7 @@ final class MenuItemTests: XCTestCase {
         let viewModel = MenuViewViewModel()
         let ingredient = viewModel.foodItems.first?.ingredients.first?.rawValue
         let transcribedString = String(describing: ingredient!)
-        XCTAssertEqual(transcribedString, "Carrot")
+        XCTAssertEqual(transcribedString, "Broccoli")
     }
     
 }
