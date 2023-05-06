@@ -97,7 +97,6 @@
 				F79A832F2A05BD380098E1AE /* MenuItemDetailsView.swift */,
 				F7ECF0082A06C4F200690869 /* Models */,
 				F7ECF0092A06C50C00690869 /* ViewModel */,
-				F79A83212A05BCEA0098E1AE /* Assets.xcassets */,
 				F79A83232A05BCEA0098E1AE /* Preview Content */,
 			);
 			path = LittleLemonMenuApp;
@@ -106,6 +105,7 @@
 		F79A83232A05BCEA0098E1AE /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				F79A83212A05BCEA0098E1AE /* Assets.xcassets */,
 				F79A83242A05BCEA0098E1AE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
